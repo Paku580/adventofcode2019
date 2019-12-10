@@ -10,6 +10,15 @@ class FileReader:
         return numbers
 
     @staticmethod
+    def read_line_by_line(file_name):
+        with open(file_name, 'r') as file:
+            lines = []
+            for line in file:
+                lines.append(line)
+
+        return lines
+
+    @staticmethod
     def read_comma_separated_values_as_int(file_name):
         with open(file_name, "r") as file:
             data = file.read()
