@@ -4,7 +4,7 @@ total_fuel_requirement = 0
 
 
 def calc_total_fuel_requirement(part2):
-    masses = FileReader.read_file_line_by_as_int("input.txt")
+    masses = FileReader.read_line_by_line_as_int("input.txt")
     for mass in masses:
         calc_fuel_requirement(mass, part2)
 
