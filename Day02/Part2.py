@@ -3,7 +3,7 @@ from Day02.IntcodeComputer import IntcodeComputer
 
 
 def main():
-    intcode = FileReader.read_comma_separated_values_as_int("input.txt")
+    intcode = FileReader.read_separated_values_as_int("input.txt", ',')
 
     for i in range(100):
         intcode[1] = i

@@ -1,15 +1,14 @@
-from Utils.FileReader import FileReader
-
-
 class IntcodeComputer:
     intcode = []
     instruction_pointer = 0
 
     def __init__(self, intcode):
         self.intcode = intcode
+        self.running = False
 
     def run_intcode(self):
-        while self.intcode[self.instruction_pointer] != 99:
+        self.running = True
+        while self.running:
             self.switch_opcode(self.intcode[self.instruction_pointer])
 
     def add(self):
@@ -27,9 +26,8 @@ class IntcodeComputer:
         self.increment_pointer()
 
     def finish(self):
-        print("noun: " + str(self.intcode[1]))
-        print("verb: " + str(self.intcode[2]))
         print(self.intcode[0])
+        self.running = False
 
     def switch_opcode(self, opcode):
         opcode = int(opcode)
