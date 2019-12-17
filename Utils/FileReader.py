@@ -19,10 +19,10 @@ class FileReader:
         return lines
 
     @staticmethod
-    def read_separated_values_as_int(file_name, splitter):
+    def read_separated_values_as_int(file_name, separator):
         with open(file_name, "r") as file:
             data = file.read()
-            data_array = data.split(splitter)
+            data_array = data.split(separator)
             data_array = [int(i) for i in data_array]
 
         return data_array
