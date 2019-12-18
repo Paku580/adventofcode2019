@@ -4,7 +4,7 @@ from enum import Enum
 class Opcode(Enum):
     ADD = 1
     MULTIPLY = 2
-    STORE = 3
+    INPUT = 3
     OUTPUT = 4
     JIT = 5
     JIF = 6
@@ -20,7 +20,8 @@ class ParameterMode(Enum):
 
 def run(intcode, inp=None):
     instruction_pointer = 0
-    inp = list(inp)
+    if inp is not None:
+        inp = list(inp)
 
     def param_value(index):
         mode = ParameterMode(((intcode[instruction_pointer] // (10 ** (index + 1))) % 10))
@@ -42,7 +43,7 @@ def run(intcode, inp=None):
         elif opcode == Opcode.MULTIPLY:
             store(3, param_value(1) * param_value(2))
             instruction_pointer += 4
-        elif opcode == Opcode.STORE:
+        elif opcode == Opcode.INPUT:
             store(1, inp.pop(0))
             instruction_pointer += 2
         elif opcode == Opcode.OUTPUT:
