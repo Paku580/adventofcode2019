@@ -14,6 +14,7 @@ class FileReader:
         with open(file_name, 'r') as file:
             lines = []
             for line in file:
+                line = line.strip("\n")
                 lines.append(line)
 
         return lines
