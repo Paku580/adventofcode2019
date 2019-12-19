@@ -35,6 +35,8 @@ def run(intcode, inp=None):
     def store(offset, value):
         intcode[intcode[instruction_pointer + offset]] = value
 
+    output = []
+
     while True:
         opcode = Opcode(intcode[instruction_pointer] % 100)
         if opcode == Opcode.ADD:
@@ -47,7 +49,7 @@ def run(intcode, inp=None):
             store(1, inp.pop(0))
             instruction_pointer += 2
         elif opcode == Opcode.OUTPUT:
-            print(param_value(1))
+            output.append(param_value(1))
             instruction_pointer += 2
         elif opcode == Opcode.JIT:
             if param_value(1):
@@ -66,4 +68,4 @@ def run(intcode, inp=None):
             store(3, param_value(1) == param_value(2))
             instruction_pointer += 4
         elif opcode == Opcode.EXIT:
-            return
+            return output
