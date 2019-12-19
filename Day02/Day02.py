@@ -1,20 +1,18 @@
 from Utils.FileReader import FileReader
-from IntcodeComputer import run
+from IntcodeComputer import Computer
 
 if __name__ == '__main__':
     intcode = FileReader.read_separated_values_as_int("input.txt", ',')
-    temp_intcode = list(intcode)
-    run(temp_intcode)
-    print(temp_intcode[0])
-
-    temp_intcode = list(intcode)
+    computer = Computer(intcode.copy())
+    computer.run()
+    print(computer.intcode[0])
 
     for i in range(100):
         for j in range(100):
-            temp_intcode = list(intcode)
-            temp_intcode[1] = i
-            temp_intcode[2] = j
-            run(temp_intcode)
-            if temp_intcode[0] == 19690720:
-                print(100*i+j)
+            computer = Computer(intcode.copy())
+            computer.intcode[1] = i
+            computer.intcode[2] = j
+            computer.run()
+            if computer.intcode[0] == 19690720:
+                print(100 * i + j)
                 exit()
