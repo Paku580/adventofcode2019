@@ -20,7 +20,6 @@ def steps_to_santa(orbit_map):
         route = [start]
         while route[-1] != 'COM':
             route.append(orbit_map[route[-1]])
-        print(route)
         return route
 
     you_to_com = route_to_com('YOU')
