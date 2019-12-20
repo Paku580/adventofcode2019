@@ -8,11 +8,12 @@ def run_amplifier_single_mode(setting_sequences) -> int:
     thruster_signals = []
     for setting_sequence in setting_sequences:
         inp = 0
-        for index, phase_setting in enumerate(setting_sequence):
-            computer = Computer(intcode.copy(), [phase_setting, inp])
-            out = computer.run()[-1]
+        computers = [Computer(intcode.copy(), [phase_setting]) for phase_setting in setting_sequence]
+        for computer in computers:
+            computer.inp.append(inp)
+            out = computer.run_until_output()
             inp = out
-            if index == len(setting_sequence) - 1:
+            if computer == computers[len(computers) - 1]:
                 output = out
         thruster_signals.append(output)
     return max(thruster_signals)
